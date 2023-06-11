@@ -1,7 +1,7 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
+import Navbar from '@components/Navbar'
+import WhatsappIcon from '@components/WhatsappIcon'
+import formatPhoneNumber from '@utils/formatPhoneNumber'
 
 export const metadata = {
   title: 'Create Next App',
@@ -14,8 +14,21 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="pt-br">
+      <body>
+        <Navbar />
+        {children}
+        <a
+          className="btn fixed bottom-5 right-5"
+          target="_blank"
+          href={`https://api.whatsapp.com/send?phone=${formatPhoneNumber(
+            '+55 48 99921-1237',
+          )}`}
+          rel="noreferrer"
+        >
+          <WhatsappIcon />
+        </a>
+      </body>
     </html>
   )
 }
